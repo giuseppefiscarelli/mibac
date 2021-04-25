@@ -1,0 +1,222 @@
+﻿.Grid3Table
+{
+    font-family: Titillium Web Light, Titillium Web;
+    border-collapse: collapse;
+    display: table;
+    font-size: inherit!important;
+    width: 100%!important;
+    height: auto!important;
+    border: none!important;
+}
+
+.Grid3Table tbody tr
+{
+    background-color: #f0f0f0;
+    -webkit-transition: background-color 0.25s ease;
+    transition: background-color 0.25s ease;
+}
+.Grid3Table tbody tr:nth-of-type(odd)
+{
+    background-color: #f6f7f9;
+}
+
+.Grid3HeaderRow
+{
+    color: #06c;
+    display: table-row;
+    border-bottom: 2px solid #06c;
+    background-color: transparent!important;
+}
+
+.Grid3HeaderCell
+{
+    display: table-cell;
+    padding: 5px 1rem;
+    color: #06c;
+    font-weight: 700;
+    line-height: 1em;
+    text-transform: uppercase;
+  font-size: 0.75rem;
+  vertical-align: bottom;
+}
+
+a.Grid3HeaderLink
+{
+    font-weight: bold;
+    color: #06c;
+    text-decoration:none;
+}
+
+a.Grid3HeaderLink:hover
+{
+    color: #0060bf;
+    text-decoration: none;
+    cursor: pointer;
+}
+a.Grid3HeaderLink:focus
+{
+  outline: none;
+}
+span.Grid3HeaderLink {
+  color: #5a768a;
+  font-size: 75%;
+}
+
+.Grid3PagerGoToLabel
+{
+    padding: .25rem 0.5rem;
+    font-size: .875rem;
+    line-height: 1.5rem;
+    margin-left: 4rem;
+    border: 1px solid #ced4da;
+    border-right: 0;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    background-color: #fff;
+    height: calc(1.5em + 0.5rem + 2px)!important;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.Grid3Link
+{
+    color: #135ea9; /*#555;*/
+    /*text-transform: lowercase;*/
+    text-decoration:none;
+    font-weight: bold;
+}
+.Grid3Link:hover
+{
+    color: #06c;
+    text-decoration: underline;
+}
+
+.Grid3Label
+{
+    font-weight: bold;  
+}
+
+input[type="text"].Grid3PagerGoToTextBox
+{
+    position: relative;
+    width: 4rem!important;
+    height: calc(1.5em + 0.5rem + 2px)!important;
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    display: inline-block;
+    line-height: 1.5rem;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-left: none!important;
+    border-right: none!important;
+    border-radius: 0;
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+input[type="text"].Grid3PagerGoToTextBox:focus
+{
+    border-radius: 0.25rem;
+    z-index: 2;
+}
+.Grid3PagerGoToTextBox:focus {
+    box-shadow: none;
+    border-color: #ebeced;
+}
+input.Grid3PagerGoToButton, input.Grid3PagerGoToButton:focus
+{
+    position: relative;
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: 0;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    box-shadow: none;
+    border: 1px solid #0073e6;
+    height: calc(1.5em + .5rem + 2px)!important;
+    top : 1px;   /*by max per allineare il pulsante*/
+}
+input.Grid3PagerGoToButton:active
+{
+    box-shadow: none;
+    background-color: #0073e6;
+    border-color: #f6f7f9;
+    color: #fff;
+}
+
+.Grid3Row
+{
+    display:table-row;
+
+}
+
+.Grid3Cell
+{
+    display: table-cell;
+    /*padding: 1rem;*/
+    vertical-align: middle;
+}
+
+.Grid3Title
+{
+}
+
+.Grid3Pager
+{
+    vertical-align: top;
+    padding: 0;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+.Grid3PagerLink
+{
+    font-size: medium;
+    padding-right: 10px;
+    color: Navy;
+    text-decoration:none;
+}
+
+.Grid3PagerLink:hover
+{
+    color:Blue;
+    text-decoration:underline;
+}
+
+
+a.Grid3PagerSelection, a.Grid3PagerLink
+{
+    padding: calc(.25rem + 1px);
+    font-size: .8rem;
+    line-height: 1.5rem;
+    display: inline-block;
+    margin-right: 0;
+    min-width:  calc(2rem + 1px);
+    text-align: center;
+    border: 1px solid #06c;
+    border-radius: 0.25rem;
+    color: #0073e6!important;
+}
+a.Grid3PagerSelection:hover, a.Grid3PagerLink:hover
+{
+  text-decoration: none;
+}
+a.Grid3PagerLink {
+  color: #5a768a!important;
+  border-color: transparent;
+  font-weight: 700;
+}
+
+.Grid3PagerLabelTotalPages
+{
+    font-size: large;
+}
+
+.Grid3HeaderCodice
+{
+    width: 20%;
+}
+
+.Grid3Invisible
+{
+    visibility: hidden;
+}
