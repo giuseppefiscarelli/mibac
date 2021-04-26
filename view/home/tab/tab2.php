@@ -1,7 +1,7 @@
 <div class="row">
 <div id="natSelect" class="col-lg-6 col-12" style="display:none;">
               <div class="bootstrap-select-wrapper" style="margin-top: 30px;padding: 0px 30px 0px 30px;">
-                  <label style="color:black;">Natura</label>
+                  <label style="color: #06c;">Natura</label>
                       <select title="Scegli una opzione" id="search4" name="search4" class="form-control" data-live-search="true">
                           <option value="" >Tutti</option>
                         

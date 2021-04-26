@@ -47,7 +47,7 @@
     </tbody>
   </table>
 </div>
-</div>
+
 <?php
                             require_once 'view/template/navigation.php';
                                 ?>

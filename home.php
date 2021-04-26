@@ -41,6 +41,7 @@ require_once 'headerInclude.php';
     require_once 'view/template/footer.php';
 ?>
 <script type="text/javascript">
+
 function downCsv(){
     tipo = $('#search1').val()
             da = $('#search2').val()
@@ -82,79 +83,103 @@ function downCsv(){
           console.log(set);
       })
       
-       
+      chartType ='pie'; 
+      iconType ='bar'; 
+      dispLegend = true; 
+      chartType3 ='pie'; 
+      iconType3 ='bar'; 
+      dispLegend3 = true; 
     function tab1(){
-        $('#mainChart').empty().append('<canvas id="chart1" width="400" height="400"></canvas>');
+        $('#mainChart').empty().append('<button style="float:right;margin-top:10px;"class="btn btn-success  btn-icon" onclick="toggleChart()"><i class="fa fa-'+iconType+'-chart" aria-hidden="true"></i> Cambia grafico</button>')
+        $('#mainChart').append('<canvas id="chart1" width="400" height="400"></canvas>');
         $('#mainChart2').empty().append('<canvas id="chart2" width="400" height="400"></canvas>');
         $('#searchBtn').attr('onclick', 'tab1();');
         var ctx1 = document.getElementById('chart1').getContext('2d');
         var myChart1 = new Chart(ctx1, {
-        type: 'bar',
-        data: {
-            labels: [],
-            datasets: [{
-                
-                data: [],
-           
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 255, 146, 0.2)',
-                    'rgba(36, 255, 99, 0.2)',
-                    'rgba(1, 51, 99, 0.2)',
-                    'rgba(255, 160, 64, 0.2)',
-                    'rgba(255, 49, 49, 0.2)',
-                    'rgba(0, 251, 42, 0.2)',
-                    'rgba(251, 243, 0, 0.2)',
-                    'rgba(0, 251, 228, 0.2)',
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(255, 255, 146, 1)',
-                    'rgba(36, 255, 99, 1)',
-                    'rgba(1, 51, 99, 1)',
-                    'rgba(255, 160, 64, 1)',
-                    'rgba(255, 49, 49, 1)',
-                    'rgba(0, 251, 42, 1)',
-                    'rgba(251, 243, 0, 1)',
-                    'rgba(0, 251, 228, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-        
-            title: {
-                display: true,
-                text: 'Distribuzione dei Beni per Regione Geografica'
+        type: chartType,
+            data: {
+                labels: [],
+                datasets: [{
+                    
+                    data: [],
+            
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 255, 146, 0.2)',
+                        'rgba(36, 255, 99, 0.2)',
+                        'rgba(1, 51, 99, 0.2)',
+                        'rgba(255, 160, 64, 0.2)',
+                        'rgba(255, 49, 49, 0.2)',
+                        'rgba(0, 251, 42, 0.2)',
+                        'rgba(251, 243, 0, 0.2)',
+                        'rgba(0, 251, 228, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 255, 146, 1)',
+                        'rgba(36, 255, 99, 1)',
+                        'rgba(1, 51, 99, 1)',
+                        'rgba(255, 160, 64, 1)',
+                        'rgba(255, 49, 49, 1)',
+                        'rgba(0, 251, 42, 1)',
+                        'rgba(251, 243, 0, 1)',
+                        'rgba(0, 251, 228, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
             },
+            options: {
+            
+                title: {
+                    display: true,
+                    text: 'Distribuzione dei Beni per Regione Geografica'
+                },
             legend: {
-                display: false
+                    display: dispLegend,
+                    position:'bottom'
+                    
+                
+                },
+                
+            
             
             },
+            plugins: [{
+                afterLayout: function(chart) {  
+                    chart.legend.legendItems.forEach(
+                            (label) => {
+                                let value = chart.data.datasets[0].data[label.index];
+                                console.log(label)
+                                console.log(value)
+                                label.text += ' - '+value;
+                                return label;
+                            }
+                    )
+                }
+            }]
         
-        }
         });
        
         $("#chart1").click( 
@@ -193,22 +218,18 @@ function downCsv(){
                         value = v.numero_beni;
                         $("#search5").append("<option value='"+label+"'>"+label+" ("+value+")</option>");
                         myChart1.data.labels.push(label);
+                      
                         myChart1.data.datasets[0].data.push(value);
                        A.push(k);
                        csvRows.push(A[label,value]);   // unquoted CSV row
                     
                     })
                     
-                  //  var A = [['n','sqrt(n)']];  // initialize array of rows with header row as 1st item
-                   // for(var j=1;j<10;++j){ A.push([j, Math.sqrt(j)]) }
-                    
-                   // for(var i=0,l=A.length; i<l; ++i){
-                  //      csvRows.push(A[i].join(','));   // unquoted CSV row
-                  //  }
+              
                         var csvString = csvRows.join("\r\n");
 
                         var a = document.getElementById('csvBtn');
-                        a.innerHTML = "Click here";
+                        a.innerHTML = "Esporta CSV";
                         a.href     = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csvString);
                         a.target   = '_blank';
                         a.download = 'myFile.csv';
@@ -216,6 +237,7 @@ function downCsv(){
                         
                     $("#search5").selectpicker('refresh');
                 myChart1.update();
+                console.log(myChart1)
                 }
             });
         }  
@@ -291,12 +313,14 @@ function downCsv(){
         );
     }
     function tab2(){
-        $('#mainChart3').empty().append('<canvas id="chart3" width="400" height="400"></canvas>');
+        $('#mainChart3').empty().append('<button style="float:right;margin-top:10px;"class="btn btn-success  btn-icon" onclick="toggleChart3()"><i class="fa fa-'+iconType3+'-chart" aria-hidden="true"></i> Cambia grafico</button>')
+
+        $('#mainChart3').append('<canvas id="chart3" width="400" height="400"></canvas>');
         $('#mainChart4').empty().append('<canvas id="chart4" width="400" height="400"></canvas>');
         $('#searchBtn').attr('onclick', 'tab2();');
         var ctx3 = document.getElementById('chart3').getContext('2d');
         var myChart3 = new Chart(ctx3, {
-        type: 'bar',
+        type: chartType3,
         data: {
             labels: [],
             datasets: [{
@@ -517,12 +541,30 @@ function downCsv(){
                 text: 'Distribuzione dei Beni per Natura'
             },
             legend: {
-                display: false,
-                position: 'left',
+                    display: dispLegend3,
+                    position:'bottom'
+                    
+                
+                },
+                
             
-            },
+            
+           
+         
         
-        }
+        },
+        plugins: [{
+                afterLayout: function(chart) {  
+                    chart.legend.legendItems.forEach(
+                            (label) => {
+                                let value = chart.data.datasets[0].data[label.index];
+                               
+                                label.text += ' - '+value;
+                                return label;
+                            }
+                    )
+                }
+            }]
         });
        
         $("#chart3").click( 
@@ -850,6 +892,34 @@ function downCsv(){
 
           
       })
+
+
+    function toggleChart() {
+        chartType = (chartType == 'bar') ? 'pie' : 'bar';
+        if(chartType == 'pie'){
+
+                dispLegend = true;
+                iconType='bar'
+
+        }else{
+            dispLegend = false;
+            iconType='pie';
+        }
+        tab1();
+    }
+    function toggleChart3() {
+        chartType3 = (chartType3 == 'bar') ? 'pie' : 'bar';
+        if(chartType3 == 'pie'){
+
+                dispLegend3 = true;
+                iconType3='bar'
+
+        }else{
+            dispLegend3 = false;
+            iconType3='pie';
+        }
+        tab2();
+    }
 </script>
   
 </script>

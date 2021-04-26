@@ -29,16 +29,7 @@
                       </select>
               </div>
           </li>
-          <li id="provSelect" >
-              <div class="bootstrap-select-wrapper" style="margin-top: 30px;padding: 0px 30px 0px 30px;">
-                  <label>Provincia</label>
-                      <select title="Scegli una provincia" id="search5" name="search5" class="form-control" data-live-search="true">
-                          <option value="" >Tutte le province</option>
-                          
-                        
-                      </select>
-              </div>
-          </li>
+          
           <li><div class="it-datepicker-wrapper"  style="margin-top: 30px;padding: 0px 30px 0px 30px;margin-bottom: -30px;">
                   <div class="form-group">
                       <input class="form-control " id="search2" name="search2"type="month" value="<?=$search2?>"placeholder="inserisci la data in formato gg/mm/aaaa">

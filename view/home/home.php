@@ -50,7 +50,7 @@
               <button id="searchBtn" class="btn btn-info btn-block"  style="background-color: #e6e6e6 !important;">Ricerca</button>
           </li>
           <li>
-              <a class="btn btn-success btn-block" id="csvBtn" style="background-color: #e6e6e6 !important;">cvs</a>
+              <a class="btn btn-success btn-block" id="csvBtn" >cvs</a>
           </li>
           
         </ul>

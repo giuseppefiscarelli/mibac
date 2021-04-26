@@ -11,6 +11,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap-italia.min.css">
      <!-- Icons CSS-->
+     <link rel="stylesheet" href="assets/font-awesome-4.7.0/css/font-awesome.min.css">
   <link href="assets/css/icons.css" rel="stylesheet" type="text/css"/>
   <link href="assets/css/CpeGrid3Standard.css" rel="stylesheet" type="text/css"/>
   <!--
