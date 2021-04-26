@@ -55,13 +55,17 @@ tab1();
 
  
 });
+chartType ='pie'; 
+iconType ='bar'; 
+dispLegend = true;
 function tab1(){
-    $('#mainChart').empty().append('<canvas id="chart1" ></canvas>');
+    $('#mainChart').empty().append('<button style="float:right;margin-top:10px;"class="btn btn-success  btn-icon" onclick="toggleChart()"><i class="fa fa-'+iconType+'-chart" aria-hidden="true"></i> Cambia grafico</button>')
+    $('#mainChart').append('<canvas id="chart1" width="400" height="400"></canvas>');
     $('#mainChart2').empty().append('<canvas id="chart2" ></canvas>');
     $('#searchBtn').attr('onclick', 'tab1();');
 var ctx1 = document.getElementById('chart1').getContext('2d');
 var myChart1 = new Chart(ctx1, {
-type: 'bar',
+    type: chartType,
 data: {
     labels: [],
     datasets: [{
@@ -284,14 +288,27 @@ options: {
         text: 'Distribuzione dei Beni per Comune'
     },
     legend: {
-        display: false,
-        position: 'bottom',
-        onClick: function (e) {
-            e.stopPropagation();
-        }
-    },
-
-}
+                    display: dispLegend,
+                    position:'bottom'
+                    
+                
+                },
+                
+            
+            
+            },
+            plugins: [{
+                afterLayout: function(chart) {  
+                    chart.legend.legendItems.forEach(
+                            (label) => {
+                                let value = chart.data.datasets[0].data[label.index];
+                              
+                                label.text += ' - '+value;
+                                return label;
+                            }
+                    )
+                }
+            }]
 });
    
        
@@ -357,6 +374,19 @@ $('#search5').on('change',function(){
 
           
       })
+      function toggleChart() {
+        chartType = (chartType == 'bar') ? 'pie' : 'bar';
+        if(chartType == 'pie'){
+
+                dispLegend = true;
+                iconType='bar'
+
+        }else{
+            dispLegend = false;
+            iconType='pie';
+        }
+        tab1();
+    }
 </script>
 </body>
 </html>    
