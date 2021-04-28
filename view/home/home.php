@@ -49,9 +49,13 @@
           <li>
               <button id="searchBtn" class="btn btn-info btn-block"  style="background-color: #e6e6e6 !important;">Ricerca</button>
           </li>
-          <li>
-              <a class="btn btn-success btn-block" id="csvBtn" >cvs</a>
+          <li style="padding:10px;margin-top:30px;">
+              <a class="btn btn-success btn-block" id="csvBtn" onClick="downCsv();"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Scarica CSV - Dist per Regione</a>
           </li>
+          <li style="padding:10px;">
+              <a class="btn btn-success btn-block" id="csvBtn2" onClick="downCsvT();"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Scarica CSV - Trend Mensile</a>
+          </li>
+          
           
         </ul>
       </div>

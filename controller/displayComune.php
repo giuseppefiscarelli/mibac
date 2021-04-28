@@ -18,6 +18,7 @@ if(!empty($_SESSION['message'])){
   $search1a = getParam ('search1a','');                
   $comune = getParam('comune','');
   $codCat = getCodCat($comune);
+ 
   //$codA = $codCat["codiceComuneAlpha"];
           $params =[
             'orderBy' => $orderBy, 
@@ -25,7 +26,8 @@ if(!empty($_SESSION['message'])){
             'recordsPerPage' =>$recordsPerPage,
             'search1' => $search1,
             'page' => $page,
-            'cod'=> $codCat["codiceComuneAlpha"]
+            'cod'=> $codCat["codiceComuneAlpha"],
+            'comune'=>$comune
           ];
 
           $orderByParams = $orderByNavigatorParams = $params;
@@ -41,13 +43,6 @@ if(!empty($_SESSION['message'])){
           $total = countTabComuni( $params);
           $numPages= ceil($total/$recordsPerPage);
           
-          if(isUserSuadmin()){
             require 'view/comune/comune.php';
-          }
-          if(isUserAdmin()){
-            require 'view/comune/comune.php';
-          }
-          if(isUserUser()){
-            require 'view/comune/comune.php';
-          }
+          
        

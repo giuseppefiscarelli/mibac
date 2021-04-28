@@ -31,14 +31,6 @@ if(!empty($_SESSION['message'])){
           unset($orderByNavigatorParams['page']);
           $orderByQueryString = http_build_query($orderByParams,'&amp;');
           $navOrderByQueryString = http_build_query($orderByNavigatorParams,'&amp;');
+          require 'view/home/home.php';
           
-          if(isUserSuadmin()){
-            require 'view/home/home.php';
-          }
-          if(isUserAdmin()){
-            require 'view/home/home.php';
-          }
-          if(isUserUser()){
-            require 'view/home/home.php';
-          }
        

@@ -22,7 +22,7 @@
  $thumb=1;
             foreach($tab as $t){
                 $ente= getEnte($t['id_ente']);
-                $comune = getComune( $t['cod_istat_comune']);
+                $comune = $t['cod_istat_comune']?getComune( $t['cod_istat_comune']):'';
                 $indirizzo= $t['denominazione_stradale']?$t['denominazione_stradale'].', '.$t['n_civico']:'Indirizzo non definito';
                
                 ?>
@@ -33,7 +33,7 @@
            
             <td class="Grid3HeaderCell" style="max-width:400px;"><?=$t['denominazione']?></td>
             <td class="Grid3HeaderCell"><?=$indirizzo?> <?=$t['chilometro']?'KM '.$t['chilometro']:''?>
-            <br><?=$t['cap']?$t['cap']." - ":''?><?=$comune['comune']?> - <?=$t['siglaProvincia']?> </td>
+            <br><?=$t['cap']?$t['cap']." - ":''?><?=$comune?$comune['comune']:''?> - <?=$t['siglaProvincia']?> </td>
             <td class="Grid3HeaderCell" style="width: 103px;">
            
                 <a title="Visualizza Scheda bene"href="#" onclick="report(<?=$t['id_bene']?>);">

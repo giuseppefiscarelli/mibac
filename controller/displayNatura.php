@@ -44,12 +44,7 @@ if(!empty($_SESSION['message'])){
           $total = countTabNatura( $params);
           $numPages= ceil($total/$recordsPerPage);
          
-          if(isUserSuadmin()){
-          }
-          if(isUserAdmin()){
+        
             require 'view/natura/natura.php';
-          }
-          if(isUserUser()){
-            require 'view/natura/natura.php';
-          }
-       
+          
+      

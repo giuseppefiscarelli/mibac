@@ -18,17 +18,7 @@ $page =getParam ('page',1);
 
     
 require_once 'view/template/topbar_header.php';
-    if(isUserSuadmin()){
-      require_once 'view/template/sidebar.php';
-    }
-    
-    if(isUserAdmin()){
-      require_once 'view/template/sidebarAdmin.php';
-    }
-    if(isUserUser()){
-      require_once 'view/template/sidebarUser.php';
-    }
-  
+   
     
 ?>    
 <!--End topbar header-->

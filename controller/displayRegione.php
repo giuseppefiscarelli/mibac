@@ -40,21 +40,9 @@ if(!empty($_SESSION['message'])){
          // $numPages= ceil($totalUsers/$recordsPerPage);
          // $users = getUsers($params);
           //var_dump($users);
-          if(isUserSuadmin()){
+        
            
 
 
             require 'view/regione/regione.php';
-          }
-          if(isUserAdmin()){
-           
-            
-
-
-            require 'view/regione/regione.php';
-          }
-          if(isUserUser()){
-            require 'view/regione/regione.php';
-
-          }
-       
+          

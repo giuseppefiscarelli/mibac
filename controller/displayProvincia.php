@@ -37,26 +37,8 @@ if(!empty($_SESSION['message'])){
               'cod' => $provincia['CPRVCOD']
               
             ];
+        
+            require 'view/provincia/provincia.php';
+
           
-         // $totalUsers= countUsers($params);
-         // $numPages= ceil($totalUsers/$recordsPerPage);
-         // $users = getUsers($params);
-          //var_dump($users);
-          if(isUserSuadmin()){
-           
-
-
-            require 'view/provincia/provincia.php';
-          }
-          if(isUserAdmin()){
-           
-            
-
-
-            require 'view/provincia/provincia.php';
-          }
-          if(isUserUser()){
-            require 'view/provincia/provincia.php';
-
-          }
        

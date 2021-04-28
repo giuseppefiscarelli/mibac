@@ -1,13 +1,13 @@
 <?php
 session_start();  
 require_once 'functions.php';
-
+/*
 if(!isUserLoggedin()){
 
   header('Location:index.php');
   exit;
 }
-/*
+
 require_once 'model/user.php';
 $updateUrl = 'userUpdate.php';
 $deleteUrl = 'controller/updateUser.php';
@@ -41,46 +41,147 @@ require_once 'headerInclude.php';
     require_once 'view/template/footer.php';
 ?>
 <script type="text/javascript">
+function convertToCSV(objArray) {
+    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+    var str = '';
+
+    for (var i = 0; i < array.length; i++) {
+        var line = '';
+        for (var index in array[i]) {
+            if (line != '') line += ','
+
+            line += array[i][index];
+        }
+
+        str += line + '\r\n';
+    }
+
+    return str;
+}
+headers = null;
+function exportCSVFile(headers, items, fileTitle) {
+    if (headers) {
+        items.unshift(headers);
+    }
+   
+    // Convert Object to JSON
+    var jsonObject = JSON.stringify(items);
+
+    var csv = this.convertToCSV(jsonObject);
+
+    var exportedFilenmae = fileTitle + '.csv' || 'export.csv';
+
+    var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    if (navigator.msSaveBlob) { // IE 10+
+        navigator.msSaveBlob(blob, exportedFilenmae);
+    } else {
+        var link = document.createElement("a");
+        if (link.download !== undefined) { // feature detection
+            // Browsers that support HTML5 download attribute
+            var url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", exportedFilenmae);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+           
+        }
+    }
+}
+
+
+
+ // or 'my-unique-title'
+
 
 function downCsv(){
-    tipo = $('#search1').val()
+    
+            
+            tipo = $('#search1').val()
             da = $('#search2').val()
             a=$('#search3').val()
-            var csvContent = '';
+            $("#search5 option:not(:first)").remove();
+            var fileTitle = 'beni_dal_'+da+'_al_'+a+'_regioni_tutte';
             $.ajax({
                 type: "POST",
                 data:{tipo:tipo,da:da,a:a},
-                url: "controller/updateChart.php?action=getCsv",
-                dataType: 'json',
-               
+                url: "controller/updateChart.php?action=getChart1",
+                dataType: "json",
                 success: function(data) {
-                  console.log(data)
-                  var A = [['n','sqrt(n)']];  // initialize array of rows with header row as 1st item
-                    for(var j=1;j<10;++j){ A.push([j, Math.sqrt(j)]) }
-                    var csvRows = [];
-                    for(var i=0,l=A.length; i<l; ++i){
-                        csvRows.push(A[i].join(','));   // unquoted CSV row
-                    }
-                        var csvString = csvRows.join("\r\n");
-
-                        var a = document.getElementById('csvBtn');
-                        a.innerHTML = "Click here";
-                        a.href     = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csvString);
-                        a.target   = '_blank';
-                        a.download = 'myFile.csv';
-                        document.body.appendChild(a);
-                        }
-         
-                
+                  
+                   var headers = {
+                            Regione: 'Regione'.replace(/,/g, ''), // remove commas to avoid errors
+                            chargers: "Numero Beni",
+                            
+                        };
+                   exportCSVFile(headers, data, fileTitle);
+                 
+                    
+                }
             });
+        
 }
+function downCsvT(){
+    
+            
+    tipo = $('#search1').val()
+    da = $('#search2').val()
+    a=$('#search3').val()
+    $("#search5 option:not(:first)").remove();
+    var fileTitle = 'beni_dal_'+da+'_al_'+a+'_trend_mensile';
+    $.ajax({
+        type: "POST",
+        data:{tipo:tipo,da:da,a:a},
+        url: "controller/updateChart.php?action=getTrend1",
+        dataType: "json",
+        success: function(data) {
+          
+           var headers = {
+                    Regione: 'anno_mese'.replace(/,/g, ''), // remove commas to avoid errors
+                    chargers: "Numero Beni",
+                    
+                };
+           exportCSVFile(headers, data, fileTitle);
+         
+            
+        }
+    });
 
+}
+function downCsvN(){
+    
+            
+    tipo = $('#search1').val()
+    da = $('#search2').val()
+    a=$('#search3').val()
+    $("#search5 option:not(:first)").remove();
+    var fileTitle = 'beni_dal_'+da+'_al_'+a+'_natura_tutte';
+    $.ajax({
+        type: "POST",
+        data:{tipo:tipo,da:da,a:a},
+        url: "controller/updateChart.php?action=getChart3",
+        dataType: "json",
+        success: function(data) {
+          
+           var headers = {
+                    Regione: 'natura_bene'.replace(/,/g, ''), // remove commas to avoid errors
+                    chargers: "numero_beni",
+                    
+                };
+           exportCSVFile(headers, data, fileTitle);
+         
+            
+        }
+    });
+
+}
    activeTab = 1;
       $('#search2').on('change',function(){
           set = $(this).val();
           $('#search3').val("");
           $('#search3').attr('min',set);
-          console.log(set);
+        
       })
       
       chartType ='pie'; 
@@ -156,7 +257,7 @@ function downCsv(){
                     display: true,
                     text: 'Distribuzione dei Beni per Regione Geografica'
                 },
-            legend: {
+                legend: {
                     display: dispLegend,
                     position:'bottom'
                     
@@ -210,9 +311,8 @@ function downCsv(){
                 url: "controller/updateChart.php?action=getChart1",
                 dataType: "json",
                 success: function(data,index) {
-                   console.log(index)
-                   var A=[];
-                   var csvRows = [];
+                  
+                 
                     $.each(data, function(k,v){
                         label = v.Descrizione;
                         value = v.numero_beni;
@@ -220,24 +320,17 @@ function downCsv(){
                         myChart1.data.labels.push(label);
                       
                         myChart1.data.datasets[0].data.push(value);
-                       A.push(k);
-                       csvRows.push(A[label,value]);   // unquoted CSV row
+                   
                     
                     })
                     
               
-                        var csvString = csvRows.join("\r\n");
-
-                        var a = document.getElementById('csvBtn');
-                        a.innerHTML = "Esporta CSV";
-                        a.href     = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csvString);
-                        a.target   = '_blank';
-                        a.download = 'myFile.csv';
+                
                         
                         
                     $("#search5").selectpicker('refresh');
                 myChart1.update();
-                console.log(myChart1)
+              
                 }
             });
         }  
@@ -685,12 +778,17 @@ function downCsv(){
         activeTab = 1;
         $('#natSelect').hide()
         $('#locSelect').show()
+        text = '<i class="fa fa-file-excel-o" aria-hidden="true"></i> Scarica CSV - Dist per Regione'
+      $('#csvBtn').attr('onClick','downCsv()').html(text)
     });
     $('#nav-vertical-tab-bg2-tab').on('shown.bs.tab', function(){
        tab2();
       activeTab = 2;
       $('#natSelect').show()
       $('#locSelect').hide()
+      text = '<i class="fa fa-file-excel-o" aria-hidden="true"></i> Scarica CSV - Dist per Natura'
+      $('#csvBtn').attr('onClick','downCsvN()')
+      $('#csvBtn').html(text)
 
        
     });
