@@ -128,6 +128,24 @@ function getCodReg($cod){
   return $result;
 
 }
+function getCodRegione($cod){
+  /**
+* @var $conn mysqli
+*/
+
+$conn = $GLOBALS['mysqli'];
+$result=[];
+$sql ="SELECT * FROM frameworkregione WHERE id = $cod";
+//echo $sql;
+$res = $conn->query($sql);
+
+if($res && $res->num_rows){
+$result = $res->fetch_assoc();
+
+}
+return $result;
+
+}
 function getCodNat($cod){
     /**
   * @var $conn mysqli
@@ -187,6 +205,24 @@ function getCodProv($cod){
       
     }
     return $result;
+
+}
+function getCodProvincia($cod){
+  /**
+   * @var $conn mysqli
+   */
+
+  $conn = $GLOBALS['mysqli'];
+  $result=[];
+  $sql ="SELECT * FROM frameworkprovincia WHERE CPRVCOD = '$cod'";
+  //echo $sql;
+  $res = $conn->query($sql);
+
+  if($res && $res->num_rows){
+    $result = $res->fetch_assoc();
+    
+  }
+  return $result;
 
 }
 function chartreg( array $params = []){
@@ -288,7 +324,7 @@ function getCodCat($cod){
   /**
   * @var $conn mysqli
   */
-
+    $cod = str_replace("'","\'",$cod);
     $conn = $GLOBALS['mysqli'];
     $result=[];
     $sql ="SELECT * FROM frameworkcomune WHERE comune = '$cod'";

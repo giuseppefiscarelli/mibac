@@ -20,6 +20,7 @@ require_once 'headerInclude.php';
     fill:  #ffffff;
 }
 </style>
+
  <div class="container-fluid">
  <?php
     require_once 'controller/displayRegione.php';
@@ -55,7 +56,7 @@ dispLegend = true;
 function tab1(){
          $('#mainChart').empty().append('<button style="float:right;margin-top:10px;"class="btn btn-success  btn-icon" onclick="toggleChart()"><i class="fa fa-'+iconType+'-chart" aria-hidden="true"></i> Cambia grafico</button>')
         $('#mainChart').append('<canvas id="chart1" width="400" height="400"></canvas>');
-        $('#mainChart2').empty().append('<canvas id="chart2" width="400" height="400"></canvas>');
+       // $('#mainChart2').empty().append('<canvas id="chart2" width="400" height="400"></canvas>');
         $('#searchBtn').attr('onclick', 'tab1();');
         var ctx1 = document.getElementById('chart1').getContext('2d');
         var myChart1 = new Chart(ctx1, {

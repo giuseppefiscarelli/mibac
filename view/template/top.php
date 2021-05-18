@@ -22,3 +22,10 @@
 
  
   </head>
+  <style>
+  body
+{
+    font-family: sans-serif !important;
+    
+}
+  </style>

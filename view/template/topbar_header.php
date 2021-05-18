@@ -1,15 +1,16 @@
 <body class="affix-parent">
    <div class="it-header-center-wrapper ">
-        <div class="container-fluid">
+        <div class="container-fluid" style="    margin-top: -36px;">
           <div class="row">
             <div class="col-12 position-static">
               <div class="it-header-center-content-wrapper">
                 <div class="it-brand-wrapper pl-0">
                   <a href="#" class="">
-                    <img src="images/mibac.png" alt="Home" style="width: 200px;">
-                    <div class="it-brand-text" style="margin-left:50px;">
-                      <h2 class="no_toc">Sistema Informativo Beni Tutelati</h2>
-                      <h3 class="no_toc d-none d-md-block">DIREZIONE GENERALE ARCHEOLOGIA, BELLE ARTI E PAESAGGIO</h3>
+                    <img src="images/mibac.png" alt="Home" style="width: 148px;">
+                    <div class="it-brand-text" style="margin-left:24px;">
+                      <h2 class="no_toc" style="font-size: 35px;
+                                                font-family: sans-serif;">Sistema Informativo Beni Tutelati</h2>
+                      <h3 class="no_toc d-none d-md-block" style="font-size: 0.75em!important;">DIREZIONE GENERALE ARCHEOLOGIA, BELLE ARTI E PAESAGGIO</h3>
                     </div>
                     <div class="it-brand-text" style="margin-left:50px;">
                       <h2 class="no_toc">SITO DI FRUIZIONE</h2>

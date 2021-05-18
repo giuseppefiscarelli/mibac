@@ -17,14 +17,26 @@ if(!empty($_SESSION['message'])){
   //$ambMenu = getAmbiente();
   $search1a = getParam ('search1a','');                
   $comune = getParam('comune','');
+  //var_dump($comune);
   $codCat = getCodCat($comune);
- 
+  $provincia=  $codCat['siglaProvincia'];
+  
+  $codProv = getCodProvincia($provincia);
+  
+  $desprov = $codProv['CPRVDEN'];
+  $codRegione = getCodRegione($codProv['idRegione']);
+  //var_dump($desprov);
+  $regione = $codRegione['Descrizione'];
+  $search2 = getParam ('search2','1990-01');
+  $search3 = getParam ('search3',date("Y-m"));
   //$codA = $codCat["codiceComuneAlpha"];
           $params =[
             'orderBy' => $orderBy, 
             'orderDir'=> $orderDir,
             'recordsPerPage' =>$recordsPerPage,
             'search1' => $search1,
+            'search2' => $search2,
+            'search3' => $search3,
             'page' => $page,
             'cod'=> $codCat["codiceComuneAlpha"],
             'comune'=>$comune

@@ -4,11 +4,16 @@
 <div class="bd-example-tabs">
   <div class="row">
   <div class="col-2 col-md-2" style="background-color: #0066cc;color: white;">
-    <h5 class="no_toc" style="font-weight: bold;">Beni di Interesse culturale</h5>
-    
+      <div class="link-list-wrapper"><ul class="link-list"> <li>
+          <h3 class="no_toc" style="color:white;">Beni di Interesse culturale</h3>
+        </li></ul></div>
       <div class="nav nav-tabs nav-tabs-vertical nav-dark" id="nav-vertical-tab-bg" role="tablist" aria-orientation="vertical">
         <a class="nav-link disabled active" style="color:black;"id="nav-vertical-tab-bg1-tab" data-toggle="tab" href="#nav-vertical-tab-bg1" role="tab" aria-controls="nav-vertical-tab-bg1" aria-selected="true">Comune di <?=$comune?></a>
-        <a class="nav-link"  href="home.php" ><svg class="icon"><use xlink:href="svg/sprite.svg#it-pa"></use></svg> Torna alla Pagina Principale</a>
+        <a class="nav-link" style="text-align: right;" href="regione.php?reg=<?=$regione?>&search1=<?=$search1??''?>&search2=<?=$search2??''?>&search3=<?=$search3??''?>" ><svg class="icon"><use xlink:href="svg/sprite.svg#it-chevron-left"></use></svg> Torna alla Regione <?=$regione?></a>
+        <a class="nav-link" style="text-align: right;" href="provincia.php?prov=<?=$desprov?>&idReg=<?=$regione?>&search1=<?=$search1??''?>&search2=<?=$search2??''?>&search3=<?=$search3??''?>" ><svg class="icon"><use xlink:href="svg/sprite.svg#it-chevron-left"></use></svg> Torna alla Provincia di <?=$desprov?></a>
+
+        <a class="nav-link"  href="home.php" style="text-align: right;"><svg class="icon"><use xlink:href="svg/sprite.svg#it-burger"></use></svg> Torna alla Pagina Principale</a>
+        <a class="nav-link"  href="index.php" style="text-align: right;"><svg class="icon"><use xlink:href="svg/sprite.svg#it-pa"></use></svg> Torna alla Home Page</a>
  
  
        
@@ -31,14 +36,14 @@
         </li>
         <li><div class="it-datepicker-wrapper"  style="margin-top: 30px;padding: 0px 30px 0px 30px;margin-bottom: -30px;">
                 <div class="form-group">
-                    <input class="form-control it-date-datepicker" id="date1" type="month" placeholder="inserisci la data in formato gg/mm/aaaa">
+                    <input class="form-control it-date-datepicker" id="date1" type="month"value="<?=$search2?>"placeholder="inserisci la data in formato gg/mm/aaaa" style="font-size: 0.75rem;">
                     <label for="date1">Periodo DA</label>
                 </div>
             </div>
         </li>
         <li><div class="it-datepicker-wrapper"  style="padding: 0px 30px 0px 30px;">
                 <div class="form-group">
-                    <input class="form-control it-date-datepicker" id="date2" type="month" placeholder="inserisci la data in formato gg/mm/aaaa">
+                    <input class="form-control it-date-datepicker" id="date2" type="month" value="<?=$search3?>"placeholder="inserisci la data in formato gg/mm/aaaa" style="font-size: 0.75rem;">
                     <label for="date2">Periodo A</label>
                 </div>
             </div>

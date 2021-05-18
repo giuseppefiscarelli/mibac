@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" >
     <div class="col-lg-4 col-12">
         <div class="bootstrap-select-wrapper" style="margin-top: 30px;padding: 0px 30px 0px 30px;">
             <label style="color:black;">Comune</label>
@@ -11,8 +11,8 @@
         </div>
     </div>
 </div>
-<div class="row" >
-    <div class="col-6" id="mainChart">
+<div class="row">
+    <div class="col-12" id="mainChart">
     <canvas id="chart1" ></canvas>
     </div>
     <!--

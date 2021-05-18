@@ -1,17 +1,7 @@
 <?php
 session_start();  
 require_once 'functions.php';
-/*
-if(!isUserLoggedin()){
 
-  header('Location:index.php');
-  exit;
-}
-
-require_once 'model/user.php';
-$updateUrl = 'userUpdate.php';
-$deleteUrl = 'controller/updateUser.php';
-*/
 require_once 'model/chart.php';
 require_once 'headerInclude.php';
 
@@ -252,7 +242,8 @@ function downCsvN(){
                 }]
             },
             options: {
-            
+                responsive: true,
+                maintainAspectRatio: true,
                 title: {
                     display: true,
                     text: 'Distribuzione dei Beni per Regione Geografica'
@@ -272,8 +263,7 @@ function downCsvN(){
                     chart.legend.legendItems.forEach(
                             (label) => {
                                 let value = chart.data.datasets[0].data[label.index];
-                                console.log(label)
-                                console.log(value)
+                              
                                 label.text += ' - '+value;
                                 return label;
                             }
