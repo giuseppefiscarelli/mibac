@@ -940,9 +940,22 @@ function downCsvN(){
         );   
     });
     $(document).ready(function() {
-        $('#nav-vertical-tab-bg1-tab').addClass('active');
+        
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+
+        const actTab = urlParams.get('actTab')
+
+        if(actTab ==2){
+            $('#nav-vertical-tab-bg2-tab').addClass('active');
+        $('#nav-vertical-tab-bg2').addClass( 'active show' );
+        tab2();
+        }else{
+            $('#nav-vertical-tab-bg1-tab').addClass('active');
         $('#nav-vertical-tab-bg1').addClass( 'active show' );
-        tab1();   
+        tab1();
+        }
+           
     });
     $('#search1').on('change',function(){
          

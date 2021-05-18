@@ -48,7 +48,7 @@ require_once 'headerInclude.php';
           
             <div class="nav nav-tabs nav-tabs-vertical nav-dark"  id="nav-vertical-tab-bg" role="tablist" aria-orientation="vertical" style="background-color: #0066cc;">
               <a class="nav-link"  href="home.php" > Per Collocazione geografica</a>
-              <a class="nav-link"  href="natura.php" >Per Natura</a>
+              <a class="nav-link"  href="home.php?actTab=2" >Per Natura</a>
               
               <a class="nav-link disabled" id="nav-vertical-tab-bg3-tab" data-toggle="tab" href="#nav-vertical-tab-bg3" role="tab" aria-controls="nav-vertical-tab-bg3" aria-selected="false">Per Ufficio di Competenza</a>
             
