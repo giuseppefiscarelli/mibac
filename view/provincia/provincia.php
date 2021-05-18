@@ -10,7 +10,7 @@
     
       <div class="nav nav-tabs nav-tabs-vertical nav-dark"  id="nav-vertical-tab-bg" role="tablist" aria-orientation="vertical">
         <a class="nav-link disabled" style="color:black;"id="nav-vertical-tab-bg1-tab" data-toggle="tab" href="#nav-vertical-tab-bg1" role="tab" aria-controls="nav-vertical-tab-bg1" aria-selected="true">Provincia <?=$prov?></a>
-        <a class="nav-link"  href="regione.php?reg=<?=$idReg?>&search1=<?=$search1??''?>&search2=<?=$search2??''?>&search3=<?=$search3??''?>" ><svg class="icon"><use xlink:href="svg/sprite.svg#it-chevron-left"></use></svg> Torna alla Regione <?=$idReg?></a>
+        <a class="nav-link"  style="text-align: right;"href="regione.php?reg=<?=$idReg?>&search1=<?=$search1??''?>&search2=<?=$search2??''?>&search3=<?=$search3??''?>" ><svg class="icon"><use xlink:href="svg/sprite.svg#it-chevron-left"></use></svg> Torna alla Regione <?=$idReg?></a>
         <a class="nav-link"  href="home.php" style="text-align: right;"><svg class="icon"><use xlink:href="svg/sprite.svg#it-burger"></use></svg> Torna alla Pagina Principale</a>
         <a class="nav-link"  href="index.php" style="text-align: right;"><svg class="icon"><use xlink:href="svg/sprite.svg#it-pa"></use></svg> Torna alla Home Page</a>
  
