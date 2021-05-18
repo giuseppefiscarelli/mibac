@@ -12,7 +12,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-12" id="mainChart">
+    <div class="col-6" id="mainChart">
     <canvas id="chart1" ></canvas>
     </div>
     <!--

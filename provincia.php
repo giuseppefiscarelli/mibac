@@ -52,7 +52,7 @@ tab1();
 });
 chartType ='pie'; 
 iconType ='bar'; 
-dispLegend = true;
+dispLegend = false;
 function tab1(){
     $('#mainChart').empty().append('<button style="float:right;margin-top:10px;"class="btn btn-success  btn-icon" onclick="toggleChart()"><i class="fa fa-'+iconType+'-chart" aria-hidden="true"></i> Cambia grafico</button>')
     $('#mainChart').append('<canvas id="chart1"  width="1" height="1"></canvas>');
@@ -571,7 +571,7 @@ $('#search5').on('change',function(){
         chartType = (chartType == 'bar') ? 'pie' : 'bar';
         if(chartType == 'pie'){
 
-                dispLegend = true;
+                dispLegend = false;
                 iconType='bar'
 
         }else{
