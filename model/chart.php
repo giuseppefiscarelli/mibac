@@ -130,20 +130,20 @@ function getCodReg($cod){
 }
 function getCodRegione($cod){
   /**
-* @var $conn mysqli
-*/
+  * @var $conn mysqli
+  */
 
-$conn = $GLOBALS['mysqli'];
-$result=[];
-$sql ="SELECT * FROM frameworkregione WHERE id = $cod";
-//echo $sql;
-$res = $conn->query($sql);
+  $conn = $GLOBALS['mysqli'];
+  $result=[];
+  $sql ="SELECT * FROM frameworkregione WHERE id = $cod";
+  //echo $sql;
+  $res = $conn->query($sql);
 
-if($res && $res->num_rows){
-$result = $res->fetch_assoc();
+  if($res && $res->num_rows){
+  $result = $res->fetch_assoc();
 
-}
-return $result;
+  }
+  return $result;
 
 }
 function getCodNat($cod){
@@ -260,7 +260,7 @@ function chartreg( array $params = []){
       
       
       $sql .= " group by siglaProvincia) q where q.siglaProvincia = p.CPRVCOD";
-    //  echo $sql;die;
+     // echo $sql;die;
         $res = $conn->query($sql);
         if($res) {
 
@@ -380,6 +380,110 @@ function getTabComuni( $params){
  
 
 }
+function getTabRegioni( $params){
+
+  /**
+   * @var $conn mysqli
+   */
+  $conn = $GLOBALS['mysqli'];
+  $search1 = array_key_exists('search1a', $params) ? $params['search1a'] : '';
+  $search1 = $conn->escape_string($search1);
+  $da = array_key_exists('search2', $params) ? $params['search2'] : '';
+  $da = $conn->escape_string($da);
+  $da= $da."-01";
+  $da = date("Y-m-d", strtotime($da));
+  $a = array_key_exists('search3', $params) ? $params['search3'] : '';
+  $a = $conn->escape_string($a);
+  $a= $a."-31";
+  $a = date("Y-m-d", strtotime($a));
+  $cod = array_key_exists('cod', $params) ? $params['cod'] : '';
+  $cod = $conn->escape_string($cod);
+  $orderBy = array_key_exists('orderBy', $params) ? $params['orderBy'] : 'id_bene';      
+  $orderDir = array_key_exists('orderDir', $params) ? $params['orderDir'] : 'ASC';
+  $limit = (int)array_key_exists('recordsPerPage', $params) ? $params['recordsPerPage'] : 10;
+  $page = (int)array_key_exists('page', $params) ? $params['page'] : 0;
+  $start =$limit * ($page -1);
+      
+
+     
+      $records = [];
+
+      
+
+      $sql ="SELECT * from fr_bene where codiceRegione = '$cod'";
+      if($da && $a){
+        $sql .= " and data_provvedimento >= '$da' and data_provvedimento <= '$a' ";
+      }
+      $sql .= " ORDER BY $orderBy  $orderDir LIMIT $start, $limit";
+
+    //echo $sql;
+
+      $res = $conn->query($sql);
+      if($res) {
+
+        while( $row = $res->fetch_assoc()) {
+            $records[] = $row;
+            
+        }
+
+      }
+
+  return $records;
+ 
+
+}
+function getTabProvince( $params){
+
+  /**
+   * @var $conn mysqli
+   */
+  $conn = $GLOBALS['mysqli'];
+  $search1 = array_key_exists('search1a', $params) ? $params['search1a'] : '';
+  $search1 = $conn->escape_string($search1);
+  $da = array_key_exists('search2', $params) ? $params['search2'] : '';
+  $da = $conn->escape_string($da);
+  $da= $da."-01";
+  $da = date("Y-m-d", strtotime($da));
+  $a = array_key_exists('search3', $params) ? $params['search3'] : '';
+  $a = $conn->escape_string($a);
+  $a= $a."-31";
+  $a = date("Y-m-d", strtotime($a));
+  $cod = array_key_exists('cod', $params) ? $params['cod'] : '';
+  $cod = $conn->escape_string($cod);
+  $orderBy = array_key_exists('orderBy', $params) ? $params['orderBy'] : 'id_bene';      
+  $orderDir = array_key_exists('orderDir', $params) ? $params['orderDir'] : 'ASC';
+  $limit = (int)array_key_exists('recordsPerPage', $params) ? $params['recordsPerPage'] : 10;
+  $page = (int)array_key_exists('page', $params) ? $params['page'] : 0;
+  $start =$limit * ($page -1);
+      
+
+     
+      $records = [];
+
+      
+
+      $sql ="SELECT * from fr_bene where siglaProvincia = '$cod'";
+      if($da && $a){
+        $sql .= " and data_provvedimento >= '$da' and data_provvedimento <= '$a' ";
+      }
+      $sql .= " ORDER BY $orderBy  $orderDir LIMIT $start, $limit";
+
+    //echo $sql;
+
+      $res = $conn->query($sql);
+      if($res) {
+
+        while( $row = $res->fetch_assoc()) {
+            $records[] = $row;
+            
+        }
+
+      }
+
+  return $records;
+ 
+
+}
 function countTabComuni( $params){
 
   /**
@@ -406,6 +510,100 @@ function countTabComuni( $params){
       $sql ="SELECT count(*) as total from fr_bene  where cod_istat_comune = '$cod'";
     
 
+     
+
+      $res = $conn->query($sql);
+      if($res) {
+
+       $row = $res->fetch_assoc();
+       $total = $row['total'];
+      }
+
+  return $total;
+
+}
+function countTabRegioni( $params){
+
+  /**
+   * @var $conn mysqli
+   */
+  //var_dump($params);
+  $conn = $GLOBALS['mysqli'];
+  $search1 = array_key_exists('search1', $params) ? $params['search1'] : '';
+  $search1 = $conn->escape_string($search1);
+  $cod = array_key_exists('cod', $params) ? $params['cod'] : '';
+  $cod = $conn->escape_string($cod);
+  $orderBy = array_key_exists('orderBy', $params) ? $params['orderBy'] : 'id_bene';      
+  $orderDir = array_key_exists('orderDir', $params) ? $params['orderDir'] : 'ASC';
+  $limit = (int)array_key_exists('recordsPerPage', $params) ? $params['recordsPerPage'] : 10;
+  $page = (int)array_key_exists('page', $params) ? $params['page'] : 0;
+  $start =$limit * ($page -1);
+      
+  $da = array_key_exists('search2', $params) ? $params['search2'] : '';
+  $da = $conn->escape_string($da);
+  $da= $da."-01";
+  $da = date("Y-m-d", strtotime($da));
+  $a = array_key_exists('search3', $params) ? $params['search3'] : '';
+  $a = $conn->escape_string($a);
+  $a= $a."-31";
+  $a = date("Y-m-d", strtotime($a));
+     
+      $total = 0;
+
+      
+
+      $sql ="SELECT count(*) as total from fr_bene  where codiceRegione = '$cod'";
+    
+      if($da && $a){
+        $sql .= " and data_provvedimento >= '$da' and data_provvedimento <= '$a' ";
+      }
+     
+
+      $res = $conn->query($sql);
+      if($res) {
+
+       $row = $res->fetch_assoc();
+       $total = $row['total'];
+      }
+
+  return $total;
+
+}
+function countTabProvince( $params){
+
+  /**
+   * @var $conn mysqli
+   */
+  //var_dump($params);
+  $conn = $GLOBALS['mysqli'];
+  $search1 = array_key_exists('search1', $params) ? $params['search1'] : '';
+  $search1 = $conn->escape_string($search1);
+  $cod = array_key_exists('cod', $params) ? $params['cod'] : '';
+  $cod = $conn->escape_string($cod);
+  $orderBy = array_key_exists('orderBy', $params) ? $params['orderBy'] : 'id_bene';      
+  $orderDir = array_key_exists('orderDir', $params) ? $params['orderDir'] : 'ASC';
+  $limit = (int)array_key_exists('recordsPerPage', $params) ? $params['recordsPerPage'] : 10;
+  $page = (int)array_key_exists('page', $params) ? $params['page'] : 0;
+  $start =$limit * ($page -1);
+      
+  $da = array_key_exists('search2', $params) ? $params['search2'] : '';
+  $da = $conn->escape_string($da);
+  $da= $da."-01";
+  $da = date("Y-m-d", strtotime($da));
+  $a = array_key_exists('search3', $params) ? $params['search3'] : '';
+  $a = $conn->escape_string($a);
+  $a= $a."-31";
+  $a = date("Y-m-d", strtotime($a));
+     
+      $total = 0;
+
+      
+
+      $sql ="SELECT count(*) as total from fr_bene  where siglaProvincia = '$cod'";
+    
+      if($da && $a){
+        $sql .= " and data_provvedimento >= '$da' and data_provvedimento <= '$a' ";
+      }
      
 
       $res = $conn->query($sql);
@@ -530,7 +728,6 @@ function getEnte($id){
     }
   return $result;
 }
-
 function getTrend( array $params =[]){
 
     /**

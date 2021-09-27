@@ -19,6 +19,12 @@ require_once 'headerInclude.php';
 .nav-tabs.nav-dark .nav-link:hover .icon {
     fill:  #ffffff;
 }
+.set-transition {
+    -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  transition: all .5s ease;
+}
 </style>
 
  <div class="container-fluid">
@@ -35,26 +41,29 @@ require_once 'headerInclude.php';
 ?>
 
 <script>
+    function showChart(){
+        $('#mainChart, #switchBtn').fadeToggle( "slow", "linear" )
+        $('#toggleBtn').attr('onclick', 'hideChart();')
+        $('#toggleBtn').html('<i class="fa fa-line-chart" aria-hidden="true"></i> Nascondi Grafico')
+        $('#divTable').toggleClass('col-12 col-6');
+    }
+    function hideChart(){
+        $('#mainChart, #switchBtn').fadeToggle( "slow", "linear" )
+        $('#toggleBtn').attr('onclick', 'showChart();')
+        $('#toggleBtn').html('<i class="fa fa-line-chart" aria-hidden="true"></i> Mostra Grafico')
+        $('#divTable').toggleClass('col-6 col-12');
+    }
 $(document).ready(function() {
 
-$('#nav-vertical-tab-bg1-tab').addClass('active');
+    $('#nav-vertical-tab-bg1-tab').addClass('active');
 
-$('#nav-vertical-tab-bg1').addClass( 'active show' );
-
-tab1(); 
-
-
- 
-
-
-
- 
+    $('#nav-vertical-tab-bg1').addClass( 'active show' );
 });
 chartType ='pie'; 
 iconType ='bar'; 
 dispLegend = true; 
 function tab1(){
-         $('#mainChart').empty().append('<button style="float:right;margin-top:10px;"class="btn btn-success  btn-icon" onclick="toggleChart()"><i class="fa fa-'+iconType+'-chart" aria-hidden="true"></i> Cambia grafico</button>')
+        // $('#mainChart').empty().append('<button style="float:right;margin-top:10px;"class="btn btn-success  btn-icon" onclick="toggleChart()"><i class="fa fa-'+iconType+'-chart" aria-hidden="true"></i> Cambia grafico</button>')
         $('#mainChart').append('<canvas id="chart1" width="400" height="400"></canvas>');
        // $('#mainChart2').empty().append('<canvas id="chart2" width="400" height="400"></canvas>');
         $('#searchBtn').attr('onclick', 'tab1();');
@@ -147,165 +156,155 @@ function tab1(){
         });
    
        
-$("#chart1").click( 
-    function(evt){
-        console.log(evt);
-       test=myChart1.getElementsAtEvent(evt);
-       var clickedElementindex = test[0]["_index"];
+    $("#chart1").click( 
+        function(evt){
+            console.log(evt);
+        test=myChart1.getElementsAtEvent(evt);
+        var clickedElementindex = test[0]["_index"];
 
-       var value = myChart1.data.datasets[0].data[clickedElementindex];
-       var label =  myChart1.data.labels[clickedElementindex];
-        console.log(label);
-        search1 = $('#search1').val();
-        search2 = $('#search2').val();
-        search3 = $('#search3').val();
-        window.location.href="provincia.php?prov="+label+"&search1="+search1+"&search2="+search2+"&search3="+search3+"&idReg=<?=$reg?>";
-    }
-); 
-var getDataChart1 = function() {
-       
-    tipo = $('#search1').val()
-            da = $('#search2').val()
-            a=$('#search3').val()
-        cod = <?=$regione['id']?>;
-        $("#search5 option:not(:first)").remove();
-        $.ajax({
-            type: "GET",
-            data:{cod:cod,tipo:tipo,da:da,a:a},
-            url: "controller/updateChart.php?action=getChartreg",
-            dataType: "json",
-            success: function(data) {
-           console.log(data);
-           $.each(data, function(k,v){
-               //console.log(k,v)
-              
-               label = v.CPRVDEN;
-               value = v.numero_beni;
-               $("#search5").append("<option value='"+label+"'>"+label+" ("+value+")</option>");
-               myChart1.data.labels.push(label);
-               myChart1.data.datasets[0].data.push(value);
-           })
-          
-           $("#search5").selectpicker('refresh');
-                   myChart1.update();
-            }
-        });
-        }
-        getDataChart1();
-var ctx2 = document.getElementById('chart2').getContext('2d');
-var myChart2 = new Chart(ctx2, {
-type: 'line',
-data: {
-    labels: [],
-    datasets: [{
-        
-        data: [],
-        backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-            'rgba(255, 255, 146, 0.2)',
-            'rgba(36, 255, 99, 0.2)',
-            'rgba(1, 51, 99, 0.2)',
-            'rgba(255, 160, 64, 0.2)',
-            'rgba(255, 49, 49, 0.2)',
-            'rgba(0, 251, 42, 0.2)',
-            'rgba(251, 243, 0, 0.2)',
-            'rgba(0, 251, 228, 0.2)',
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)',
-            'rgba(255, 255, 146, 1)',
-            'rgba(36, 255, 99, 1)',
-            'rgba(1, 51, 99, 1)',
-            'rgba(255, 160, 64, 1)',
-            'rgba(255, 49, 49, 1)',
-            'rgba(0, 251, 42, 1)',
-            'rgba(251, 243, 0, 1)',
-            'rgba(0, 251, 228, 1)',
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-        ],
-        borderWidth: 1
-    }]
-},
-options: {
-    
-    title: {
-        display: true,
-        text: 'Trend Mensile del periodo Selezionato'
-    },
-    legend: {
-        display: false,
-        
-    },
-
-}
-});
-
-$("#chart2").click( 
-    function(evt){
-       test=myChart2.getElementsAtEvent(evt)
-        console.log(test);
-    }
-);
-}
-$('#nav-vertical-tab-bg1-tab').on('shown.bs.tab', function(){
-        tab1();
-    });
-
-    $(document).ready(function() {
-        $('#nav-vertical-tab-bg1-tab').addClass('active');
-        $('#nav-vertical-tab-bg1').addClass( 'active show' );
-        tab1();   
-    }); 
-    
-    $('#search5').on('change',function(){
-          label = $(this).val();
-
-        if(label.length>0){
+        var value = myChart1.data.datasets[0].data[clickedElementindex];
+        var label =  myChart1.data.labels[clickedElementindex];
+            console.log(label);
             search1 = $('#search1').val();
             search2 = $('#search2').val();
             search3 = $('#search3').val();
-                
             window.location.href="provincia.php?prov="+label+"&search1="+search1+"&search2="+search2+"&search3="+search3+"&idReg=<?=$reg?>";
         }
-          
+    ); 
+    var getDataChart1 = function() {
+        
+        tipo = $('#search1').val()
+                da = $('#search2').val()
+                a=$('#search3').val()
+            cod = <?=$regione['id']?>;
+            $("#search5 option:not(:first)").remove();
+            $.ajax({
+                type: "GET",
+                data:{cod:cod,tipo:tipo,da:da,a:a},
+                url: "controller/updateChart.php?action=getChartreg",
+                dataType: "json",
+                success: function(data) {
+            console.log(data);
+            $.each(data, function(k,v){
+                //console.log(k,v)
+                
+                label = v.CPRVDEN;
+                value = v.numero_beni;
+                $("#search5").append("<option value='"+label+"'>"+label+" ("+value+")</option>");
+                myChart1.data.labels.push(label);
+                myChart1.data.datasets[0].data.push(value);
+            })
             
+            $("#search5").selectpicker('refresh');
+                    myChart1.update();
+                }
+            });
+            }
+            getDataChart1();
+    var ctx2 = document.getElementById('chart2').getContext('2d');
+    var myChart2 = new Chart(ctx2, {
+    type: 'line',
+    data: {
+        labels: [],
+        datasets: [{
+            
+            data: [],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 255, 146, 0.2)',
+                'rgba(36, 255, 99, 0.2)',
+                'rgba(1, 51, 99, 0.2)',
+                'rgba(255, 160, 64, 0.2)',
+                'rgba(255, 49, 49, 0.2)',
+                'rgba(0, 251, 42, 0.2)',
+                'rgba(251, 243, 0, 0.2)',
+                'rgba(0, 251, 228, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 255, 146, 1)',
+                'rgba(36, 255, 99, 1)',
+                'rgba(1, 51, 99, 1)',
+                'rgba(255, 160, 64, 1)',
+                'rgba(255, 49, 49, 1)',
+                'rgba(0, 251, 42, 1)',
+                'rgba(251, 243, 0, 1)',
+                'rgba(0, 251, 228, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        
+        title: {
+            display: true,
+            text: 'Trend Mensile del periodo Selezionato'
+        },
+        legend: {
+            display: false,
+            
+        },
 
-          
-      })   
-      function toggleChart() {
-        chartType = (chartType == 'bar') ? 'pie' : 'bar';
-        if(chartType == 'pie'){
-
-                dispLegend = true;
-                iconType='bar'
-
-        }else{
-            dispLegend = false;
-            iconType='pie';
-        }
-        tab1();
     }
+    });
+
+    $("#chart2").click( 
+        function(evt){
+        test=myChart2.getElementsAtEvent(evt)
+            console.log(test);
+        }
+    )
+}
+$('#nav-vertical-tab-bg1-tab').on('shown.bs.tab', function(){
+        tab1();
+});
+$(document).ready(function() {
+    $('#nav-vertical-tab-bg1-tab').addClass('active');
+    $('#nav-vertical-tab-bg1').addClass( 'active show' );
+    tab1();   
+});  
+$('#search5').on('change',function(){
+    label = $(this).val();
+    if(label.length>0){
+        search1 = $('#search1').val();
+        search2 = $('#search2').val();
+        search3 = $('#search3').val(); 
+        window.location.href="provincia.php?prov="+label+"&search1="+search1+"&search2="+search2+"&search3="+search3+"&idReg=<?=$reg?>";
+    }       
+})   
+function toggleChart() {
+    chartType = (chartType == 'bar') ? 'pie' : 'bar';
+    if(chartType == 'pie'){
+        dispLegend = true;
+        iconType='bar'
+    }else{
+        dispLegend = false;
+        iconType='pie';
+    }
+    tab1();
+}
 </script>
 </body>
 </html>    

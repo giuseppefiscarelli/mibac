@@ -2,10 +2,10 @@
   <div class="row">
     <div class="col-2 col-md-2" style="background-color: #0066cc;color: white;">    
       <div class="link-list-wrapper"><ul class="link-list"> <li>
-          <h3 class="no_toc" style="color:white;">Beni di Interesse culturale</h3>
+          <h3 class="no_toc" style="color:white;font-size:14px;">Beni di Interesse culturale</h3>
         </li></ul>
       </div>
-      <div class="nav nav-tabs nav-tabs-vertical nav-dark"  id="nav-vertical-tab-bg" role="tablist" aria-orientation="vertical" style="background-color: #0066cc;">
+      <div class="nav nav-tabs nav-tabs-vertical nav-dark"  id="nav-vertical-tab-bg" role="tablist" aria-orientation="vertical" style="background-color: #0066cc;font-size:14px;">
         <a class="nav-link " id="nav-vertical-tab-bg1-tab" data-toggle="tab" href="#nav-vertical-tab-bg1" role="tab" aria-controls="nav-vertical-tab-bg1" aria-selected="true">Per Collocazione geografica</a>
         <a class="nav-link" id="nav-vertical-tab-bg2-tab" data-toggle="tab" href="#nav-vertical-tab-bg2" role="tab" aria-controls="nav-vertical-tab-bg2" aria-selected="false">Per Natura</a>
         <a class="nav-link disabled" id="nav-vertical-tab-bg3-tab" data-toggle="tab" href="#nav-vertical-tab-bg3" role="tab" aria-controls="nav-vertical-tab-bg3" aria-selected="false">Per Ufficio di Competenza</a>

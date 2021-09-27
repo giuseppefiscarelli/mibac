@@ -1,6 +1,6 @@
 
-
-<span class="badge badge-secondary">Totale Beni <b><?=$total?></b></span>  <span class="badge badge-secondary">Comune Bene <b><?=$comune?></b></span>
+<h4 style="color:#06c;text-align:center;">Beni di interesse culturale del Comune di <?=$comune?></h4>
+<span class="badge badge-secondary">Totale Beni <b><?=$total?></b></span> <!-- <span class="badge badge-secondary">Comune Bene <b><?=$comune?></b></span>-->
 
 
 

@@ -54,7 +54,7 @@ if(!empty($_SESSION['message'])){
           $tab= getTabComuni($params);
           $total = countTabComuni( $params);
           $numPages= ceil($total/$recordsPerPage);
-          
+          //var_dump($tab);
             require 'view/comune/comune.php';
           
        
